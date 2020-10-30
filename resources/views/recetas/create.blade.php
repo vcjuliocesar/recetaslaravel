@@ -27,11 +27,17 @@
                 </div>
                 <div class="form-group">
                     <label for="categoria">Categoria</label>
-                    <select name="categoria" id="categoria" class="form-control">
+                    <select name="categoria" id="categoria" class="form-control @error('categoria') is-invalid @enderror">
+                        <option value="">-- Seleccione --</option>
                         @foreach ($categorias as $id => $categoria)
-                    <option value="{{$id}}">{{$categoria}}</option>
+                            <option value="{{$id}}" {{old('categoria') == $id ? 'selected':''}}>{{$categoria}}</option>
                         @endforeach
                     </select>
+                    @error('categoria')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Agregar Receta">

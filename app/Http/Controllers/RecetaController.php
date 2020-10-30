@@ -30,8 +30,8 @@ class RecetaController extends Controller
     public function create()
     {
         //DB::table('categoria_receta')->get()->pluck('nombre','id');
-        $categorias = DB::table('categoria_receta')->get()->pluck('nombre','id');
-        return view('recetas.create')->with('categorias',$categorias);
+        $categorias = DB::table('categoria_receta')->get()->pluck('nombre', 'id');
+        return view('recetas.create')->with('categorias', $categorias);
     }
 
     /**
@@ -43,11 +43,12 @@ class RecetaController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'titulo'=>'required|min:6'
+            'titulo' => 'required|min:6',
+            'categoria' => 'required',
         ]);
 
         DB::table('recetas')->insert([
-            'titulo'=>$data['titulo'],
+            'titulo' => $data['titulo'],
         ]);
         return redirect()->action('RecetaController@index');
     }
