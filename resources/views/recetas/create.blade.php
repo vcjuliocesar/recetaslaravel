@@ -8,7 +8,8 @@
     <h2 class="text-center md-5">Crear nueva receta</h2>
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
-            <form action="" method="POST">
+        <form action="{{route('recetas.store')}}" method="POST">
+            @csrf
                 <div class="form-group">
                     <label for="titulo"> Titulo Receta</label>
                     <input type="text"
