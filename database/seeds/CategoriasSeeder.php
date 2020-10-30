@@ -25,7 +25,7 @@ class CategoriasSeeder extends Seeder
         ]);
 
         DB::table('categoria_receta')->insert([
-            'nombre' => 'Comida mexicana',
+            'nombre' => 'Comida Arabe',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
