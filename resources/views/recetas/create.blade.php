@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.0/trix.css">
+@endsection
+
 @section('botones')
     <a href="{{route('recetas.index')}}" class="btn btn-primary mr-2 text-white">Volver</a>
 @endsection
@@ -39,6 +43,26 @@
                         </span>
                     @enderror
                 </div>
+                <div class="form-group mt-3">
+                    <label for="preparacion">Preparacion</label>
+                    <input id="preparacion" type="hidden" name="preparacion" value="{{old("preparacion")}}"/>
+                    <trix-editor input="preparacion" class="form-control @error('preparacion') is-invalid @enderror"></trix-editor>
+                    @error('preparacion')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group mt-3">
+                    <label for="ingredientes">Ingredientes</label>
+                    <input id="ingredientes" type="hidden" name="ingredientes" value="{{old("ingredientes")}}"/>
+                    <trix-editor input="ingredientes" class="form-control @error('ingredientes') is-invalid @enderror"></trix-editor>
+                    @error('ingredientes')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                    @enderror
+                </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Agregar Receta">
                 </div>
@@ -46,4 +70,8 @@
         </div>
     </div>
 
+@endsection
+
+@section('scripts')
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.0/trix.js"></script>
 @endsection
