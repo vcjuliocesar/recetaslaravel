@@ -63,6 +63,15 @@
                         </span>
                     @enderror
                 </div>
+                <div class="form-group mt-3">
+                    <label for="imagen">Imagen</label>
+                    <input id="image" name="imagen" type="file" class="form-control @error('imagen') is-invalid @enderror">
+                    @error('imagen')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                    @enderror
+                </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Agregar Receta">
                 </div>
