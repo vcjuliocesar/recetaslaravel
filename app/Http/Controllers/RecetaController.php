@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Receta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RecetaController extends Controller
@@ -44,14 +45,19 @@ class RecetaController extends Controller
     {
         $data = $request->validate([
             'titulo' => 'required|min:6',
-            'categoria' => 'required',
             'preparacion'=>'required',
             'ingredientes'=>'required',
-            'imagen'=> 'required|image',
+            //'imagen'=> 'required|image',
+            'categoria' => 'required',
         ]);
 
         DB::table('recetas')->insert([
             'titulo' => $data['titulo'],
+            'preparacion'=>$data['preparacion'],
+            'ingredientes' => $data['ingredientes'],
+            'imagen'=>'imagen.jpg',
+            'user_id'=> Auth::user()->id,
+            'categoria_id'=>$data['categoria'],
         ]);
         return redirect()->action('RecetaController@index');
     }
