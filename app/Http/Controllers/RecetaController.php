@@ -47,18 +47,21 @@ class RecetaController extends Controller
             'titulo' => 'required|min:6',
             'preparacion'=>'required',
             'ingredientes'=>'required',
-            //'imagen'=> 'required|image',
+            'imagen'=> 'required|image',
             'categoria' => 'required',
         ]);
+
+        $ruta_imagen = $request['imagen']->store('upload-recetas','public');
 
         DB::table('recetas')->insert([
             'titulo' => $data['titulo'],
             'preparacion'=>$data['preparacion'],
             'ingredientes' => $data['ingredientes'],
-            'imagen'=>'imagen.jpg',
+            'imagen'=> $ruta_imagen,
             'user_id'=> Auth::user()->id,
             'categoria_id'=>$data['categoria'],
         ]);
+
         return redirect()->action('RecetaController@index');
     }
 
