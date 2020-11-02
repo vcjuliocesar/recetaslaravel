@@ -23,6 +23,7 @@ class RecetaController extends Controller
     public function index()
     {
         $recetas = auth()->user()->recetas;
+
         return view('recetas.index')->with('recetas',$recetas);
     }
 
@@ -37,7 +38,7 @@ class RecetaController extends Controller
 
         //Obtener las categorias (sin modelo)
 
-        $categorias = DB::table('categoria_recetas')->get()->pluck('nombre', 'id');
+        //$categorias = DB::table('categoria_recetas')->get()->pluck('nombre', 'id');
 
         //Con modelo
         $categorias = CategoriaReceta::all(['id','nombre']);
@@ -67,13 +68,22 @@ class RecetaController extends Controller
         $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(1000,550);
         $img->save();
 
-        //guardar en la bd
-        DB::table('recetas')->insert([
+        //guardar en la bd (Sin modelo)
+        /*DB::table('recetas')->insert([
             'titulo' => $data['titulo'],
             'preparacion'=>$data['preparacion'],
             'ingredientes' => $data['ingredientes'],
             'imagen'=> $ruta_imagen,
             'user_id'=> Auth::user()->id,
+            'categoria_id'=>$data['categoria'],
+        ]);*/
+
+        //guardar en la bd (Con modelo)
+        auth()->user()->recetas()->create([
+            'titulo' => $data['titulo'],
+            'preparacion'=>$data['preparacion'],
+            'ingredientes' => $data['ingredientes'],
+            'imagen'=> $ruta_imagen,
             'categoria_id'=>$data['categoria'],
         ]);
 
