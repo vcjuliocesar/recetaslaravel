@@ -77,11 +77,12 @@
                 <div class="py-4 mt-5 col-12">
                     @yield('botones')
                 </div>
+                <main class="py-4 mt-5 col-12">
+                    @yield('content')
+                </main>
             </div>
         </div>
-        <main class="py-4 mt-5 col-12">
-            @yield('content')
-        </main>
+
     </div>
     @yield('scripts')
 </body>
