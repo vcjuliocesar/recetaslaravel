@@ -18,7 +18,10 @@
        </p>
        <p>
         <span class="font-weight-bold text-primary">Fecha:</span>
-        {{$receta->created_at}}
+        @php
+            $fecha = $receta->created_at;
+        @endphp
+        <fecha-receta fecha='{{$fecha}}'></fecha-receta>
         </p>
        <div class="ingredientes">
            <h2 class="my-3 text-primary">Ingredientes</h2>
