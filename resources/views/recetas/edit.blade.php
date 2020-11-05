@@ -12,8 +12,10 @@
     <h2 class="text-center md-5">Editar receta:{{$receta->titulo}}</h2>
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
-        <form action="{{route('recetas.store')}}" enctype="multipart/form-data" method="POST" novalidate>
+        <form action="{{route('recetas.update',['receta'=>$receta->id])}}" enctype="multipart/form-data" method="POST" novalidate>
             @csrf
+
+            @method('PUT')
                 <div class="form-group">
                     <label for="titulo"> Titulo Receta</label>
                     <input type="text"
