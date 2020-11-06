@@ -1935,10 +1935,23 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.isConfirmed) {
           //enviar la petición al servidor
-          _this.$swal({
-            title: "Receta eliminada",
-            text: "Se eliminó la receta",
-            icon: "success"
+          var params = {
+            id: _this.recetaId
+          };
+          axios.post("/recetas/".concat(_this.recetaId), {
+            params: params,
+            _method: "delete"
+          }).then(function (respuesta) {
+            _this.$swal({
+              title: "Receta eliminada",
+              text: "Se eliminó la receta",
+              icon: "success"
+            }); //eliminar receta del DOM
+
+
+            _this.$el.parentNode.parentNode.parentNode.removeChild(_this.$el.parentNode.parentNode);
+          })["catch"](function (error) {
+            console.log(error);
           });
         }
       });

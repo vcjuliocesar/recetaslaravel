@@ -20,16 +20,32 @@ export default {
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Si",
-                cancelButtonText:"No"
+                cancelButtonText: "No"
             }).then(result => {
                 if (result.isConfirmed) {
-
                     //enviar la petición al servidor
-                    this.$swal({
-                        title :"Receta eliminada",
-                        text : "Se eliminó la receta",
-                        icon : "success"
-                    });
+                    const params = {
+                        id: this.recetaId
+                    };
+
+                    axios
+                        .post(`/recetas/${this.recetaId}`, {
+                            params,
+                            _method: "delete"
+                        })
+                        .then(respuesta => {
+                            this.$swal({
+                                title: "Receta eliminada",
+                                text: "Se eliminó la receta",
+                                icon: "success"
+                            });
+
+                            //eliminar receta del DOM
+                            this.$el.parentNode.parentNode.parentNode.removeChild(this.$el.parentNode.parentNode);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
                 }
             });
         }
