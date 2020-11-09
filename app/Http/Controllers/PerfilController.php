@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class PerfilController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -76,7 +77,16 @@ class PerfilController extends Controller
             'biografia'=>'required',
         ]);
         //Si el usuario sube una imagen
+
+        //Asignar nombre y URL
+        auth()->user()->url = $data['url'];
+        auth()->user()->name = $data['nombre'];
+        auth()->user()->save();
+        //Eliminar url y name de $data
+        unset($data['url']);
+        unset($data['nombre']);
         //Guardar Informacio
+        auth()->user()->perfil()->update($data);
         //Redireccionar
         return "Actualizar perfil";
     }
