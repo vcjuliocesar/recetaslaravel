@@ -42,4 +42,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Receta::class);
     }
+
+    /** relacion 1:1 Usuarios a Perfil */
+    public function perfil()
+    {
+        return $this->hasOne(Perfil::class);
+    }
 }
