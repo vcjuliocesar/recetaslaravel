@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','url',
     ];
 
     /**
@@ -36,6 +36,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**Evento que se ejecuta cuando un usuario es creado */
+    protected static function boot()
+    {
+        parent::boot();
+
+        //Asignar perfil una vez se haya creado un usuario nuevo
+
+        static::created(function($user){
+            $user->perfil()->create();
+        });
+
+    }
 
     /** relacion 1:n Usuario a recetas*/
     public function recetas()
