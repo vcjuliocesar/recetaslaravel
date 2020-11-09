@@ -38,7 +38,12 @@ class CreateRecetasTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('categoria_recetas');
+        Schema::enableForeignKeyConstraints();
+
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('recetas');
+        Schema::enableForeignKeyConstraints();
     }
 }
