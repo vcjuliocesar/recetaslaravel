@@ -12,7 +12,9 @@
     <h1 class="text-center">Editar Mi Perfil</h1>
     <div class="row justify-content-center mt-5">
         <div class="col-md-10 bg-white p-3">
-            <form action="">
+            <form action="{{route('perfiles.update',['perfil'=>$perfil->id])}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="text"
@@ -20,7 +22,7 @@
                         class="form-control  @error('nombre') is-invalid @enderror"
                         id="nombre"
                         placeholder="Tu Nombre"
-                        {{--value="{{$perfil->nombre}}"--}}
+                        value="{{$perfil->usuario->name}}"
                     />
                     @error('nombre')
                         <span class="invalid-feedback d-block" role="alert">
@@ -35,7 +37,7 @@
                         class="form-control  @error('url') is-invalid @enderror"
                         id="url"
                         placeholder="Tu Sitio Web"
-                        {{--value="{{$perfil->url}}"--}}
+                        value="{{$perfil->usuario->url}}"
                     />
                     @error('url')
                         <span class="invalid-feedback d-block" role="alert">
@@ -45,7 +47,7 @@
                 </div>
                 <div class="form-group mt-3">
                     <label for="biografia">Biografia</label>
-                    <input id="biografia" type="hidden" name="biografia" {{--value="{{$perfil->preparacion}}"--}}/>
+                    <input id="biografia" type="hidden" name="biografia" value="{{$perfil->biografia}}"/>
                     <trix-editor input="biografia" class="form-control @error('biografia') is-invalid @enderror"></trix-editor>
                     @error('biografia')
                         <span class="invalid-feedback d-block" role="alert">
@@ -67,6 +69,9 @@
                             </span>
                         @enderror
                     @endif
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Actualizar Perfil">
                 </div>
             </form>
         </div>
