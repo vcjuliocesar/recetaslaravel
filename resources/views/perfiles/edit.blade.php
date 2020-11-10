@@ -61,7 +61,7 @@
                     @if ($perfil->imagen)
                         <div class="mt-4">
                             <p>Imagen Actual:</p>
-                            {{--<img src="/storage/{{$receta->imagen}}" alt="imagen actual" style="width: 300px">--}}
+                            <img src="/storage/{{$perfil->imagen}}" alt="imagen actual" style="width: 300px">
                         </div>
                         @error('imagen')
                             <span class="invalid-feedback d-block" role="alert">
