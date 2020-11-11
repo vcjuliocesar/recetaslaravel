@@ -3,7 +3,7 @@
         <span
             class="like-btn"
             @click="likeReceta"
-            :class="{ 'like-active': this.like }"
+            :class="{ 'like-active': isActive }"
         ></span>
         <p>{{ cantidadLikes }} Les gustó esta receta</p>
     </div>
@@ -14,7 +14,8 @@ export default {
     props: ["recetaId", "like", "likes"],
     data:function(){
         return{
-            totalLikes: this.likes
+            totalLikes: this.likes,
+            isActive:this.like
         }
     },
     methods: {
@@ -27,9 +28,13 @@ export default {
                     } else {
                         this.$data.totalLikes--;
                     }
+
+                    this.isActive = !this.isActive
                 })
                 .catch(error => {
-                    console.log(error);
+                    if(error.response.status == 401){
+                        window.location = "/register";
+                    }
                 });
         }
     },
