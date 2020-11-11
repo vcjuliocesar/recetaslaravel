@@ -31,6 +31,6 @@ Route::get('/perfiles/{perfil}/edit','PerfilController@edit')->name('perfiles.ed
 Route::put('/perfiles/{perfil}','PerfilController@update')->name('perfiles.update');
 
 // Almacena los likes de las recetas
-Route::post('recetas/{receta}','LikesController@store')->name('likes.store');
+Route::post('/recetas/{receta}','LikesController@update')->name('likes.update');
 
 Auth::routes();
