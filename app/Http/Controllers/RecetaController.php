@@ -98,6 +98,8 @@ class RecetaController extends Controller
      */
     public function show(Receta $receta)
     {
+        //Revisar el policy
+        $this->authorize('update',$receta);
         return view('recetas.show',compact('receta'));
     }
 

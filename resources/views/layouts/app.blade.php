@@ -60,6 +60,10 @@
                                         {{ __('Ver Perfil') }}
                                     </a>
 
+                                    <a class="dropdown-item" href="{{route('recetas.index')}}">
+                                        {{ __('Ver Recetas') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
