@@ -101,9 +101,9 @@ class RecetaController extends Controller
      */
     public function show(Receta $receta)
     {
-        //Revisar el policy
-        $this->authorize('update',$receta);
-        return view('recetas.show',compact('receta'));
+        // Obtener si el usuario actual le gusta la receta y esta autenticado
+        $like = (auth()->user()) ? auth()->user()->meGusta->contains($receta->id):false;
+        return view('recetas.show',compact('receta','like'));
     }
 
     /**
@@ -114,6 +114,9 @@ class RecetaController extends Controller
      */
     public function edit(Receta $receta)
     {
+        // Revisar el policy
+        $this->authorize('view', $receta);
+        //con modelo
         $categorias = CategoriaReceta::all(['id','nombre']);
         return view('recetas.edit',compact('categorias','receta'));
     }
