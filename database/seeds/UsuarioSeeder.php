@@ -21,16 +21,12 @@ class UsuarioSeeder extends Seeder
             'url'=>'http://miweb.com',
         ]);
 
-        $user->perfil()->create();
-
         $user2 = User::create([
             'name' => 'Cesar',
             'email' =>'cesar@faker.com',
             'password' => Hash::make('12345678'),
             'url'=>'http://miweb.com',
         ]);
-
-        $user2->perfil()->create();
 
         /*DB::table('users')->insert([
             'name' => 'Julio Cesar',
