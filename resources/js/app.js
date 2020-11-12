@@ -4,6 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 import Vue from 'vue';
+import 'owl.carousel';
 import VueSweetalert2 from 'vue-sweetalert2';
 require('./bootstrap');
 
@@ -36,6 +37,12 @@ const app = new Vue({
     el: '#app',
 });
 
-$('.like-btn').on('click', function() {
-    $(this).toggleClass('like-active');
- });
+/** Carousel con olw */
+jQuery(document).ready(function(){
+    jQuery('.owl-carousel').owlCarousel({
+        margin:10,
+        loop:true,
+        autoplay:true,
+        autoplayHoverPause:true
+    })
+});
