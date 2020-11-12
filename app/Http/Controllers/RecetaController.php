@@ -188,4 +188,11 @@ class RecetaController extends Controller
         $receta->delete();
         return redirect()->action('RecetaController@index');
     }
+
+    public function search(Request $request)
+    {
+        //$busqueda = $request['buscar'];
+        $busqueda = $request->get('buscar');
+        return $busqueda;
+    }
 }
