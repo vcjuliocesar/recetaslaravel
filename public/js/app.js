@@ -81817,7 +81817,18 @@ jQuery(document).ready(function () {
     margin: 10,
     loop: true,
     autoplay: true,
-    autoplayHoverPause: true
+    autoplayHoverPause: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 2
+      },
+      1000: {
+        items: 3
+      }
+    }
   });
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
