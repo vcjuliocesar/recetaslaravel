@@ -24,6 +24,6 @@ class InicioController extends Controller
             $recetas[Str::slug($categoria->nombre)][] = Receta::where('categoria_id',$categoria->id)->take(3)->get();
         }
 
-        return view('inicio.index',compact('nuevas'));
+        return view('inicio.index',compact('nuevas','recetas'));
     }
 }
