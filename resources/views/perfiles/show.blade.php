@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-5">
                 @if ($perfil->imagen)
-                    <img src="/storage/{{$perfil->imagen}}" class="w-100" rounded-circle alt="imagen chef">
+                    <img src="/uploads/{{$perfil->imagen}}" class="w-100" rounded-circle alt="imagen chef">
                 @endif
             </div>
             <div class="col-md-7 mt-5 mt-md-0">

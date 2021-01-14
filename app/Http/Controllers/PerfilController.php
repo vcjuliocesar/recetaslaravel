@@ -6,6 +6,8 @@ use App\Perfil;
 use App\Receta;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class PerfilController extends Controller
 {
@@ -92,10 +94,13 @@ class PerfilController extends Controller
 
         //Si el usuario sube una imagen
             if($request['imagen']){
-                $ruta_imagen = $request['imagen']->store('upload-perfiles','public');
-
+                //$ruta_imagen = $request['imagen']->store('upload-perfiles','public');
+                $imagen = $request->file('imagen');
+                $extension = $imagen->getClientOriginalExtension();
+                $ruta_imagen = 'upload-perfiles/'.$imagen->getFilename().'.'.$extension;
+                Storage::disk('public')->put($ruta_imagen,File::get($imagen));
                 //resize de la imagen
-                $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(600,600);
+                $img = Image::make(public_path("uploads/{$ruta_imagen}"))->fit(600,600);
                 $img->save();
 
                 //crear un arreglo de imagen

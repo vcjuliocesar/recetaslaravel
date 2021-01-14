@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\CategoriaReceta;
 use App\Receta;
+use App\CategoriaReceta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class RecetaController extends Controller
 {
@@ -67,10 +69,13 @@ class RecetaController extends Controller
             'categoria' => 'required',
         ]);
 
-        $ruta_imagen = $request['imagen']->store('upload-recetas','public');
-
+        //$ruta_imagen = $request['imagen']->store('upload-recetas','public');
+         $imagen = $request->file('imagen');
+         $extension = $imagen->getClientOriginalExtension();
+         $ruta_imagen = 'upload-recetas/'.$imagen->getFilename().'.'.$extension;
+         Storage::disk('public')->put($ruta_imagen,File::get($imagen));
         //resize de la imagen
-        $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(1000,550);
+        $img = Image::make(public_path('uploads/'.$ruta_imagen))->fit(1000,550);
         $img->save();
 
         //guardar en la bd (Sin modelo)
@@ -156,10 +161,14 @@ class RecetaController extends Controller
         //Si el usuario sube una nueva imagen
         if(request('imagen')){
             //obtener la ruta de la imagen
-            $ruta_imagen = $request['imagen']->store('upload-recetas','public');
-
+            //$ruta_imagen = $request['imagen']->store('upload-recetas','public');
+            $imagen = $request->file('imagen');
+            $extension = $imagen->getClientOriginalExtension();
+            $ruta_imagen = 'upload-recetas/'.$imagen->getFilename().'.'.$extension;
+            Storage::disk('public')->put($ruta_imagen,File::get($imagen));
             //resize de la imagen
-            $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(1000,550);
+            //$img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(1000,550);
+            $img = Image::make(public_path('uploads/'.$ruta_imagen))->fit(1000,550);
             $img->save();
 
             //Asignar al objeto

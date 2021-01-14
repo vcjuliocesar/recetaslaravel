@@ -25,7 +25,7 @@
         <div class="owl-carousel owl-theme">
             @foreach ($nuevas as $nueva)
                 <div class="card">
-                    <img src="/storage/{{$nueva->imagen}}" class="card-img-top" alt="imagen receta">
+                    <img src="/uploads/{{$nueva->imagen}}" class="card-img-top" alt="imagen receta">
                     <div class="card-body">
                         <h3>{{Str::title($nueva->titulo)}}</h3>
                         <p>{{Str::words(strip_tags($nueva->preparacion),15)}}</p>

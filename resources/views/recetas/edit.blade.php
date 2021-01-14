@@ -73,7 +73,7 @@
                     <input id="image" name="imagen" type="file" class="form-control @error('imagen') is-invalid @enderror">
                     <div class="mt-4">
                         <p>Imagen Actual:</p>
-                        <img src="/storage/{{$receta->imagen}}" alt="imagen actual" style="width: 300px">
+                        <img src="/uploads/{{$receta->imagen}}" alt="imagen actual" style="width: 300px">
                     </div>
                     @error('imagen')
                         <span class="invalid-feedback d-block" role="alert">

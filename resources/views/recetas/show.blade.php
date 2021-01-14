@@ -5,7 +5,7 @@
 <article class="contenido-receta bg-white p-5 shadow">
    <h1 class="text-center mb-4">{{$receta->titulo}}</h1>
    <div class="imagen-receta">
-   <img src="/storage/{{$receta->imagen}}" alt="imagen" class="w-100">
+   <img src="/uploads/{{$receta->imagen}}" alt="imagen" class="w-100">
    </div>
    <div class="receta-meta mt-3">
        <p>
